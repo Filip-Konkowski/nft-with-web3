@@ -2,15 +2,17 @@
 pragma solidity ^0.8.0;
 
 import './ERC721Connector.sol';
+import './ERC721Metadata.sol';
+import './ERC721Enumerable.sol';
 
-contract KryptoBird is ERC721Connector {
+contract KryptoBird is ERC721Metadata, ERC721Enumerable {
 
     // array to store our nfts
     string [] public kryptoBirdz;
 
     mapping(string => bool) _kryptoBirdzExists;
 
-    function mint(string memory _kryptoBird) public {
+    function mint(string memory  _kryptoBird) public {
 
         require(!_kryptoBirdzExists[_kryptoBird],
         'Error - kryptoBird already exists');
@@ -25,7 +27,7 @@ contract KryptoBird is ERC721Connector {
 
     }
 
-    constructor() ERC721Connector('KryptoBird','KBIRDZ')
+    constructor() ERC721Metadata('KryptoBird','KBIRDZ')
  {}
 
 }
