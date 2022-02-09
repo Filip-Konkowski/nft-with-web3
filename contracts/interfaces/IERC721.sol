@@ -17,7 +17,7 @@ interface IERC721  {
 
     function transferFrom(address _from, address _to, uint256 _tokenId) external;
 
-    // function approve(address _approved, uint256 _tokenId) external payable;
+    function approve(address _approved, uint256 _tokenId) external payable;
 
     // function setApprovalForAll(address _operator, bool _approved) external;
 

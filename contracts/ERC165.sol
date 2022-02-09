@@ -10,6 +10,16 @@ contract ERC165 is IERC165 {
     constructor() {
         _registerInterface(bytes4(keccak256('supportsInterface(bytes4)')));
     }
+    // byte calculation function
+    function calcFingerPrint() public pure returns(bytes4) {
+        return bytes4(keccak256('supportsInterface(bytes4)')^
+        keccak256('someCustoFun(bytes4)')
+        );
+    }
+
+    function someCustomFun() external pure returns(uint256) {
+        return 5;
+    }
 
     function supportsInterface(bytes4 interfaceID) external view override returns (bool) {
         return _supportedInterfaces[interfaceID];
