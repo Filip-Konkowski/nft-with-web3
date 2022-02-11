@@ -1,19 +1,37 @@
-const { expect } = require("chai");
+const { expect, assert } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("KryptoBird", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const ERC721 = await ethers.getContractFactory("ERC721");
-    const erc721 = await ERC721.deploy();
-    await erc721.deployed();
+  it("Should min one bird", async function () {
+    const KryptoBird = await ethers.getContractFactory("KryptoBird");
+    const kryptoBirdContract = await KryptoBird.deploy();
+    await kryptoBirdContract.deployed();
 
-    // expect(await greeter.greet()).to.equal("Hello, world!");
+    kryptoBirdContract.mint('bird1')
+    const totalSupply = await kryptoBirdContract.totalSupply()
 
-    // const setGreetingTx = await kryptoBird.setGreeting("Hola, mundo!");
-
-    // wait until the transaction is mined
-    // await setGreetingTx.wait();
-
-    // expect(await erc721Enumerable.greet()).to.equal("Hola, mundo!");
+    assert.equal(totalSupply, 1)
   });
+
+  it("Should min few birds and check values", async function () {
+    const KryptoBird = await ethers.getContractFactory("KryptoBird");
+    const kryptoBirdContract = await KryptoBird.deploy();
+    await kryptoBirdContract.deployed();
+
+    kryptoBirdContract.mint('bird1')
+    kryptoBirdContract.mint('bird2')
+    kryptoBirdContract.mint('bird3')
+
+    const totalSupply = await kryptoBirdContract.totalSupply()
+    assert.equal(totalSupply, 3)
+
+    const [minter] = await ethers.getSigners()
+    const firstOwner = await kryptoBirdContract.ownerOf(1)
+    assert.equal(firstOwner, minter.address)
+    
+    const balance = await kryptoBirdContract.balanceOf(minter.address)
+    assert.equal(balance, 3)
+  });
+
+
 });

@@ -49,11 +49,11 @@ contract ERC721 is ERC165, IERC721 {
         keccak256('ownerOf(bytes4)')^keccak256('transferFrom(bytes4)')));
     }
 
-        // well we find the current balanceOf
-        function balanceOf(address _owner) public override view returns(uint256) {
-            require(_owner != address(0), 'owner query for non-existent token');
-            return _OwnedTokensCount[_owner].current();
-        }
+    // well we find the current balanceOf
+    function balanceOf(address _owner) public override view returns(uint256) {
+        require(_owner != address(0), 'owner query for non-existent token');
+        return _OwnedTokensCount[_owner].current();
+    }
 
     /// @notice Find the owner of an NFT
     /// @dev NFTs assigned to zero address are considered invalid, and queries
