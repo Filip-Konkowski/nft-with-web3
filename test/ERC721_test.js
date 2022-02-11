@@ -3,9 +3,9 @@ const { ethers } = require("hardhat");
 
 describe("KryptoBird", function () {
   it("Should return the new greeting once it's changed", async function () {
-    const KryptoBird = await ethers.getContractFactory("KryptoBird");
-    const kryptoBird = await KryptoBird.deploy();
-    await kryptoBird.deployed();
+    const ERC721 = await ethers.getContractFactory("ERC721");
+    const erc721 = await ERC721.deploy();
+    await erc721.deployed();
 
     // expect(await greeter.greet()).to.equal("Hello, world!");
 

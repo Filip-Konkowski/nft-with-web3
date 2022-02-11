@@ -12,6 +12,7 @@ contract ERC165 is IERC165 {
     }
     // byte calculation function
     function calcFingerPrint() public pure returns(bytes4) {
+        // here used XOR operator
         return bytes4(keccak256('supportsInterface(bytes4)')^
         keccak256('someCustoFun(bytes4)')
         );

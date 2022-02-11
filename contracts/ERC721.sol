@@ -136,7 +136,7 @@ contract ERC721 is ERC165, IERC721 {
     // 3. require that we cant approve sending tokens of the owner to the owner (current caller)
     // 4. update the map of the approval addresses
 
-    function approve(address _to, uint256 tokenId) public {
+    function approve(address _to, uint256 tokenId) public override payable {
         address owner = ownerOf(tokenId);
         require(_to != owner, 'Error - approval to current owner');
         require(msg.sender == owner, 'Current caller is not the owner of the token');
