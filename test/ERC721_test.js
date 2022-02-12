@@ -2,7 +2,7 @@ const { expect, assert } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("KryptoBird", function () {
-  it("Should min one bird", async function () {
+  it("Should mint one bird", async function () {
     const KryptoBird = await ethers.getContractFactory("KryptoBird");
     const kryptoBirdContract = await KryptoBird.deploy();
     await kryptoBirdContract.deployed();
@@ -13,7 +13,7 @@ describe("KryptoBird", function () {
     assert.equal(totalSupply, 1)
   });
 
-  it("Should min few birds and check values", async function () {
+  it("Should min few birds and check owner and balance", async function () {
     const KryptoBird = await ethers.getContractFactory("KryptoBird");
     const kryptoBirdContract = await KryptoBird.deploy();
     await kryptoBirdContract.deployed();
